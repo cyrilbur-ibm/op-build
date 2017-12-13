@@ -33,8 +33,18 @@ define SKIBOOT_BUILD_CMDS
 		$(MAKE) $(SKIBOOT_MAKE_OPTS) -C $(@D) all
 endef
 
+define HOST_SKIBOOT_BUILD_CMDS
+	SKIBOOT_VERSION=`cat $(SKIBOOT_VERSION_FILE)` \
+		$(MAKE) -C $(@D)/external/ffspart all
+endef
+
 define SKIBOOT_INSTALL_IMAGES_CMDS
 	$(INSTALL) -D -m 755 $(@D)/skiboot.lid $(BINARIES_DIR)
 endef
 
+define HOST_SKIBOOT_INSTALL_CMDS
+	$(INSTALL) -D $(@D)/external/ffspart/ffspart $(HOST_DIR)/bin/
+endef
+
 $(eval $(generic-package))
+$(eval $(host-generic-package))
