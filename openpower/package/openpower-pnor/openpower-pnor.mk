@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-OPENPOWER_PNOR_VERSION ?= de0f8e47de145df11a18d065742c7d583307f307
-OPENPOWER_PNOR_SITE ?= $(call github,open-power,pnor,$(OPENPOWER_PNOR_VERSION))
+OPENPOWER_PNOR_VERSION ?= 8e9363a9c8591cc7b934f264476fbe07e38cced2
+OPENPOWER_PNOR_SITE ?= $(call github,cyrilbur-ibm,pnor,$(OPENPOWER_PNOR_VERSION))
 
 OPENPOWER_PNOR_LICENSE = Apache-2.0
 OPENPOWER_PNOR_LICENSE_FILES = LICENSE
@@ -132,6 +132,7 @@ define OPENPOWER_PNOR_INSTALL_IMAGES_CMDS
             -openpower_version_filename $(OPENPOWER_PNOR_VERSION_FILE)
 
         $(INSTALL) $(STAGING_DIR)/pnor/$(BR2_OPENPOWER_PNOR_FILENAME) $(BINARIES_DIR)
+        $(INSTALL) $(STAGING_DIR)/pnor/ffspart.pnor $(BINARIES_DIR)
 
         # if this config has an UPDATE_FILENAME defined, create a 32M (1/2 size)
         # image that only updates the non-golden side
