@@ -134,6 +134,9 @@ define OPENPOWER_PNOR_INSTALL_IMAGES_CMDS
         $(INSTALL) $(STAGING_DIR)/pnor/$(BR2_OPENPOWER_PNOR_FILENAME) $(BINARIES_DIR)
         $(INSTALL) $(STAGING_DIR)/pnor/ffspart.pnor $(BINARIES_DIR)
 
+        #Lets actually check they're the same
+        cmp "$(STAGING_DIR)/pnor/$(BR2_OPENPOWER_PNOR_FILENAME)" "$(STAGING_DIR)/pnor/ffspart.pnor"
+
         # if this config has an UPDATE_FILENAME defined, create a 32M (1/2 size)
         # image that only updates the non-golden side
         if [ "$(BR2_OPENPOWER_PNOR_UPDATE_FILENAME)" != "" ]; then \
